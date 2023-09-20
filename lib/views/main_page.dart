@@ -26,12 +26,29 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
 class _MainPageState extends State<MainPage> {
   PageController pageController = PageController();
   SideMenuController sideMenu = SideMenuController();
+  final PageController _pageController = PageController();
+  int currentPage = 0;
   @override
   void initState() {
     sideMenu.addListener((index) {
       pageController.jumpToPage(index);
     });
     super.initState();
+  }
+
+  String toUpperLower(String text, int index) {
+    if (currentPage == index) {
+      return capitalize(text);
+    } else {
+      return text.toLowerCase();
+    }
+  }
+
+  String capitalize(String input) {
+    if (input.isEmpty) {
+      return input;
+    }
+    return input[0] + input[1].toUpperCase() + input.substring(2);
   }
 
   @override
@@ -41,11 +58,11 @@ class _MainPageState extends State<MainPage> {
         title: Text(),
         centerTitle: true,
       ), */
-      backgroundColor: kkkkk,
-      body: Row(
+      backgroundColor: kBackgroundColor,
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SideMenu(
+          /* SideMenu(
             controller: sideMenu,
             style: SideMenuStyle(
               // showTooltip: false,
@@ -186,14 +203,124 @@ class _MainPageState extends State<MainPage> {
                 icon: const Icon(Icons.download),
               ),
             ],
+          ), */
+          Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.only(
+              left: 25,
+              right: 25,
+              top: 10,
+              bottom: 10,
+            ),
+            margin: EdgeInsets.only(top: 12),
+            width: MediaQuery.of(context).size.width / 3.5,
+            decoration: BoxDecoration(
+              color: Color(0xFF02070D),
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(
+                color: Color(0xFFFFFFFF).withOpacity(.1), // Custom border color
+                width: 1, // Custom border width
+              ),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(0,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                    setState(() {
+                      currentPage = 0;
+                    });
+                  },
+                  child: Text(
+                    toUpperLower(".home()", 0),
+                    style: TextStyle(
+                      color:
+                          (currentPage == 0) ? Colors.teal : Color(0xFFFFFFFF),
+                      fontSize: (currentPage == 0) ? 19 : 17,
+                      fontWeight: (currentPage == 0)
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(1,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                    setState(() {
+                      currentPage = 1;
+                    });
+                  },
+                  child: Text(
+                    toUpperLower(".work()", 1),
+                    style: TextStyle(
+                      color: (currentPage == 1)
+                          ? Colors.indigo
+                          : Color(0xFFFFFFFF),
+                      fontSize: (currentPage == 1) ? 19 : 17,
+                      fontWeight: (currentPage == 1)
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(2,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                    setState(() {
+                      currentPage = 2;
+                    });
+                  },
+                  child: Text(
+                    toUpperLower(".about()", 2),
+                    style: TextStyle(
+                      color:
+                          (currentPage == 2) ? Colors.red : Color(0xFFFFFFFF),
+                      fontSize: (currentPage == 2) ? 19 : 17,
+                      fontWeight: (currentPage == 2)
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(3,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.ease);
+                    setState(() {
+                      currentPage = 3;
+                    });
+                  },
+                  child: Text(
+                    toUpperLower(".contact()", 3),
+                    style: TextStyle(
+                      color: (currentPage == 3)
+                          ? Colors.yellow
+                          : Color(0xFFFFFFFF),
+                      fontSize: (currentPage == 3) ? 19 : 17,
+                      fontWeight: (currentPage == 3)
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                //Text(".contact()"),
+              ],
+            ),
           ),
           Expanded(
             child: PageView(
-              controller: pageController,
-              allowImplicitScrolling: false,
-              //scrollBehavior: MyCustomScrollBehavior(),
+              controller: _pageController,
               onPageChanged: (index) {
-                sideMenu.changePage(index);
+                currentPage = index;
               },
               //scrollBehavior: MyCustomScrollBehavior(),
               scrollDirection: Axis.vertical,

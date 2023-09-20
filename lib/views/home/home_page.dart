@@ -1,6 +1,8 @@
 import 'dart:math';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:me/animations/entrance_fader.dart';
+import 'package:me/utils/colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -28,10 +30,10 @@ class HomePage extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width / 50,
-              right: MediaQuery.of(context).size.width / 30,
+              left: MediaQuery.of(context).size.width / 10,
+              right: MediaQuery.of(context).size.width / 10,
               bottom: MediaQuery.of(context).size.width / 30,
-              top: MediaQuery.of(context).size.width / 10),
+              top: MediaQuery.of(context).size.width / 30),
           child: Flex(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             /* crossAxisAlignment: CrossAxisAlignment.start, */
@@ -42,69 +44,92 @@ class HomePage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'MY NAME ',
+                  /* Text(
+                    'Hey ',
                     style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height / 9,
+                      color: kColorText,
+                      fontSize: MediaQuery.of(context).size.height / 10,
+                    ),
+                  ), */
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Hey',
+                        style: TextStyle(
+                          color: kColorText,
+                          fontSize: MediaQuery.of(context).size.height / 10,
+                        ),
+                      ),
+                      EntranceFader(
+                        offset: Offset(0, 0),
+                        delay: Duration(seconds: 2),
+                        duration: Duration(milliseconds: 800),
+                        child: Image.asset(
+                          "assets/images/wave.gif",
+                          height: MediaQuery.of(context).size.height / 10,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    'I\'m Franck',
+                    style: TextStyle(
+                      color: kColorText,
+                      fontSize: MediaQuery.of(context).size.height / 10,
                     ),
                   ),
                   RichText(
                     text: TextSpan(children: <TextSpan>[
                       TextSpan(
-                        text: 'IS ',
+                        text: 'Dabryn',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Tw Cen MT Std Medium Cond',
-                          fontSize: MediaQuery.of(context).size.height / 10,
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'SIYAPZE',
-                        style: TextStyle(
-                          color: Colors.black,
+                          color: kColorText,
                           fontFamily: 'Tw Cen MT Std Bold Cond',
                           fontSize: MediaQuery.of(context).size.height / 10,
                         ),
                       ),
                     ]),
                   ),
-                  Text(
-                    'FRANCK...',
-                    style: TextStyle(
-                      fontFamily: 'Tw Cen MT Std Bold Cond',
-                      fontSize: MediaQuery.of(context).size.height / 9,
-                    ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 20,
                   ),
-                  RichText(
-                    text: TextSpan(children: <TextSpan>[
-                      TextSpan(
-                        text: 'FullStack Developer',
-                        style: TextStyle(
-                          color: Colors.black,
+                  Row(
+                    children: [
+                      TyperAnimatedTextKit(
+                        isRepeatingAnimation: true,
+                        speed: Duration(milliseconds: 100),
+                        textStyle: TextStyle(
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Tw Cen MT Italic',
                           fontSize: MediaQuery.of(context).size.height / 25,
                         ),
+                        text: const [
+                          "Software Engineer",
+                          "Flutter Developer",
+                          "Web Developer",
+                        ],
                       ),
-                      TextSpan(
-                        text: ' based in ',
+                      Text(
+                        ' Based in ',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.normal,
                           fontFamily: 'Tw Cen MT',
                           fontSize: MediaQuery.of(context).size.height / 25,
                         ),
                       ),
-                      TextSpan(
-                        text: 'Canada',
+                      Text(
+                        'Canada',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Tw Cen MT Italic',
                           fontSize: MediaQuery.of(context).size.height / 25,
                         ),
                       ),
-                    ]),
+                    ],
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 20,
@@ -171,9 +196,17 @@ class HomePage extends StatelessWidget {
                             ? MediaQuery.of(context).size.width / 7.5
                             : MediaQuery.of(context).size.width / 4,
                       ),
-                      child: Image.asset(
-                        'assets/images/mecolor2.png',
-                        fit: BoxFit.cover,
+                      child: ColorFiltered(
+                        colorFilter: ColorFilter.mode(
+                          Colors
+                              .grey, // Couleur du filtre, dans ce cas, le gris pour le noir et blanc
+                          BlendMode
+                              .saturation, // Mode de fusion pour le filtre BW
+                        ),
+                        child: Image.asset(
+                          'assets/images/me2.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),

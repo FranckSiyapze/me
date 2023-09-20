@@ -11,4 +11,5 @@ const kBlue = Color(0xFF149ddd);
 const kGreen = Color.fromRGBO(76, 175, 80, 1);
 const kButton = Color(0xFF5bd0e3);
 const kkkkk = Color.fromRGBO(227, 226, 226, 0.69);
+const kColorText = Color(0xFFCCCCCC);
 //rgba(13,18,22,.7)
