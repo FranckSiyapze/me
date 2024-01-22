@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
+import 'package:me/views/about/about_page.dart';
 import 'package:me/views/home/home_page.dart';
 import '../utils/colors.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
@@ -334,14 +335,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                 ),
-                Container(
-                  child: const Center(
-                    child: Text(
-                      'Files',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+                const AboutPage(),
                 Container(
                   child: const Center(
                     child: Text(

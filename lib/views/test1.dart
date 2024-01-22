@@ -1,25 +1,26 @@
-import 'package:flutter/material.dart';
+// TODO Implement this library.import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class TestPage extends StatelessWidget {
   final PageController _pageController = PageController();
   final List<String> menuItems = ["Page 1", "Page 2", "Page 3"];
   int currentPage = 0;
 
-  // Fonction pour déterminer une couleur de texte basée sur le contraste avec l'arrière-plan
+  // Fonction pour dï¿½terminer une couleur de texte basï¿½e sur le contraste avec l'arriï¿½re-plan
   Color getContrastColor(Color backgroundColor) {
-    // Formule pour déterminer la luminosité relative d'une couleur
+    // Formule pour dï¿½terminer la luminositï¿½ relative d'une couleur
     final luminance = (0.299 * backgroundColor.red +
             0.587 * backgroundColor.green +
             0.114 * backgroundColor.blue) /
         255;
 
-    // Si la luminance est suffisamment élevée, utilisez une couleur de texte sombre
+    // Si la luminance est suffisamment ï¿½levï¿½e, utilisez une couleur de texte sombre
     return luminance > 0.5 ? Colors.black : Colors.white;
   }
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = Color(0xFF040b14); // Couleur d'arrière-plan
+    final backgroundColor = Color(0xFF040b14); // Couleur d'arriï¿½re-plan
 
     return MaterialApp(
       home: Scaffold(
@@ -35,7 +36,7 @@ class TestPage extends StatelessWidget {
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                   color: getContrastColor(
-                      backgroundColor), // Couleur du texte basée sur le contraste
+                      backgroundColor), // Couleur du texte basï¿½e sur le contraste
                 ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -51,7 +52,7 @@ class TestPage extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(8.0),
                         color:
-                            backgroundColor, // Utilisez la couleur d'arrière-plan
+                            backgroundColor, // Utilisez la couleur d'arriï¿½re-plan
                         child: Text(
                           menuItems[index],
                         ),
@@ -71,13 +72,13 @@ class TestPage extends StatelessWidget {
                   // Contenu de la Page 1
                   Container(
                     color:
-                        backgroundColor, // Utilisez la couleur d'arrière-plan
+                        backgroundColor, // Utilisez la couleur d'arriï¿½re-plan
                     child: Center(
                       child: Text(
                         "Contenu de la Page 1",
                         style: TextStyle(
                           color: getContrastColor(
-                              backgroundColor), // Couleur du texte basée sur le contraste
+                              backgroundColor), // Couleur du texte basï¿½e sur le contraste
                         ),
                       ),
                     ),
@@ -85,13 +86,13 @@ class TestPage extends StatelessWidget {
                   // Contenu de la Page 2
                   Container(
                     color:
-                        backgroundColor, // Utilisez la couleur d'arrière-plan
+                        backgroundColor, // Utilisez la couleur d'arriï¿½re-plan
                     child: Center(
                       child: Text(
                         "Contenu de la Page 2",
                         style: TextStyle(
                           color: getContrastColor(
-                              backgroundColor), // Couleur du texte basée sur le contraste
+                              backgroundColor), // Couleur du texte basï¿½e sur le contraste
                         ),
                       ),
                     ),
@@ -99,13 +100,13 @@ class TestPage extends StatelessWidget {
                   // Contenu de la Page 3
                   Container(
                     color:
-                        backgroundColor, // Utilisez la couleur d'arrière-plan
+                        backgroundColor, // Utilisez la couleur d'arriï¿½re-plan
                     child: Center(
                       child: Text(
                         "Contenu de la Page 3",
                         style: TextStyle(
                           color: getContrastColor(
-                              backgroundColor), // Couleur du texte basée sur le contraste
+                              backgroundColor), // Couleur du texte basï¿½e sur le contraste
                         ),
                       ),
                     ),
