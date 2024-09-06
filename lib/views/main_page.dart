@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
+import 'package:me/utils/responsive.dart';
 import 'package:me/views/about/about_page.dart';
 import 'package:me/views/home/home_page.dart';
 import '../utils/colors.dart';
@@ -205,6 +206,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ],
           ), */
+          (Responsive.isDesktop(context) )?
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.only(
@@ -316,6 +318,66 @@ class _MainPageState extends State<MainPage> {
                 //Text(".contact()"),
               ],
             ),
+          ):Container(
+            margin: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width / 10,
+                right: MediaQuery.of(context).size.width / 10,
+                bottom: MediaQuery.of(context).size.width / 30,
+                top: MediaQuery.of(context).size.width / 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 35,
+                  height: 35,
+                  child: ClipOval(
+                    child: SizedBox.fromSize(
+                      size: Size.fromRadius(48), // Image radius
+                      child: Image.asset('assets/images/me2.jpg', fit: BoxFit.cover),
+                    ),
+                  ),
+                ),
+
+
+                Container(
+                  padding: EdgeInsets.only(
+                    top: 8,
+                    bottom: 8,
+                    left: 16,
+                    right: 16,
+                  ),
+                  width: MediaQuery.of(context).size.width / 5,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF02070D),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Color(0xFFFFFFFF).withOpacity(.1), // Custom border color
+                      width: 1, // Custom border width
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Menu',
+                        style: TextStyle(
+                          color:kColorText,
+                          fontSize: MediaQuery.of(context).size.height / 45
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 40,
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        size: MediaQuery.of(context).size.height / 45,
+                        color: kColorText,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
           Expanded(
             child: PageView(
@@ -324,6 +386,7 @@ class _MainPageState extends State<MainPage> {
                 currentPage = index;
               },
               //scrollBehavior: MyCustomScrollBehavior(),
+              physics: AlwaysScrollableScrollPhysics(), // Enables scrolling gestures  AlwaysScrollableScrollPhysics
               scrollDirection: Axis.vertical,
               children: [
                 const HomePage(),

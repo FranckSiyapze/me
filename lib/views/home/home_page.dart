@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
+      physics: AlwaysScrollableScrollPhysics(), // Enables scrolling gestures
       padding: EdgeInsets.all(12),
       children: [
         Container(
